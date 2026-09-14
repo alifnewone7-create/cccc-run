@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { SatelliteDish, ArrowRight, ArrowUpRight, ArrowDownRight, EyeOff } from 'lucide-react'
+import { SatelliteDish, ArrowUpRight, ArrowDownRight, EyeOff } from 'lucide-react'
+import { otcMarkets, realMarkets, marketLabel } from '@/lib/markets'
 
 type Signal = {
   id: number
@@ -13,16 +13,40 @@ type Signal = {
   tf: string
 }
 
-const POOL: Omit<Signal, 'id' | 't'>[] = [
-  { pair: 'EUR/USD', dir: 'CALL', conf: 93, tf: '1M' },
-  { pair: 'GBP/JPY OTC', dir: 'PUT', conf: 91, tf: '1M' },
-  { pair: 'XAU/USD', dir: 'CALL', conf: 88, tf: '5M' },
-  { pair: 'USD/CAD OTC', dir: 'PUT', conf: 95, tf: '1M' },
-  { pair: 'BTC/USD', dir: 'CALL', conf: 86, tf: '5M' },
-  { pair: 'AUD/USD', dir: 'PUT', conf: 90, tf: '1M' },
-  { pair: 'EUR/GBP OTC', dir: 'CALL', conf: 92, tf: '1M' },
-  { pair: 'USD/JPY', dir: 'CALL', conf: 89, tf: '5M' },
+const CRYPTO_OTC = [
+  'Bitcoin',
+  'Ethereum',
+  'Litecoin',
+  'Ripple',
+  'Solana',
+  'Polkadot',
+  'Chainlink',
+  'Toncoin',
+  'Zcash',
+  'Avalanche',
+  'Binance Coin',
+  'Dash',
+  'Trump',
+  'Cosmos',
+  'Bitcoin Cash',
+  'Ethereum Classic',
+  'Axie Infinity',
 ]
+
+const COMMODITY_OTC = ['Gold', 'Silver', 'USCrude', 'UKBrent']
+
+const MARKETS: string[] = [
+  ...otcMarkets.map(marketLabel),
+  ...realMarkets.map(marketLabel),
+  ...[...CRYPTO_OTC, ...COMMODITY_OTC].map((n) => `${n} (OTC)`),
+]
+
+const POOL: Omit<Signal, 'id' | 't'>[] = MARKETS.map((pair, i) => ({
+  pair,
+  dir: i % 2 === 0 ? 'CALL' : 'PUT',
+  conf: 86 + ((i * 7) % 12),
+  tf: i % 4 === 0 ? '5M' : '1M',
+}))
 
 function hhmm(d: Date) {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
@@ -32,8 +56,8 @@ const INITIAL: Signal[] = POOL.slice(0, 5).map((s, i) => ({ ...s, id: i, t: '--:
 
 const METRICS = [
   { k: 'median latency', v: '180ms' },
-  { k: 'models in vote', v: '4' },
-  { k: 'pairs on watch', v: '42' },
+  { k: 'models in use', v: '4' },
+  { k: 'pairs on watch', v: String(MARKETS.length) },
 ]
 
 export function CocoTerminal() {
@@ -97,10 +121,6 @@ export function CocoTerminal() {
               </div>
             ))}
           </div>
-          <Link href="/login" className="coco-btn coco-btn-primary mt-10" data-testid="terminal-cta">
-            Open the console
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
         <div className="coco-window mx-auto mt-12 max-w-[720px] text-left" data-testid="signal-terminal">

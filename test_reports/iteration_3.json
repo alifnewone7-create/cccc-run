@@ -1,0 +1,56 @@
+{
+  "summary": "Frontend-only verification of the new /dashboard design + mobile bottom navigation. Logged in as qa.coco.tester@example.com at 390x844 (mobile) and 1920x1080 (desktop). All 8 review items verified passing: login lands on /dashboard; on mobile top header is hidden and fixed bottom nav shows exactly [Dashboard, Live, Analyzer (raised center), Future, More] in order; on desktop 1920 bottom nav is hidden and top header is visible; bottom-nav Dashboard/Live/Future navigate to correct routes with active-item highlighting; Analyzer center button opens a sheet with OTC + Real Chart Analyzer links that navigate correctly; More sheet shows profile row, links (OTC, Real, News, Management, Landing page) + Log out button, and X close dismisses it; no horizontal overflow at 390 on /dashboard, /live-signals, /future-signals; new dark-purple dashboard renders profile card + Daily Limit + Trading tools without breakage at 390 and 1920.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "detailed_checks": {
+    "login_lands_on_dashboard": true,
+    "mobile_390": {
+      "header_visible": false,
+      "bottom_nav_visible": true,
+      "bottom_nav_items_in_order": ["Dashboard", "Live", "Analyzer", "Future", "More"],
+      "dashboard_profile_visible": true,
+      "dashboard_tools_visible": true,
+      "overflow_dashboard": {"sw": 390, "cw": 390, "overflow": false},
+      "overflow_live_signals": {"sw": 390, "cw": 390, "overflow": false},
+      "overflow_future_signals": {"sw": 390, "cw": 390, "overflow": false}
+    },
+    "desktop_1920": {
+      "header_visible": true,
+      "bottom_nav_visible": false,
+      "overflow_dashboard": {"sw": 1920, "cw": 1920, "overflow": false}
+    },
+    "bottom_nav_navigation": {
+      "live": "/live-signals OK",
+      "future": "/future-signals OK",
+      "dashboard": "/dashboard OK, active class 'is-active' applied"
+    },
+    "analyzer_sheet": {
+      "opens_on_center_button": true,
+      "shows_otc_link": true,
+      "shows_real_link": true,
+      "otc_navigates_to": "/otc-chart-analyzer"
+    },
+    "more_sheet": {
+      "otc": true, "real": true, "news_signals": true, "management": true, "landing_page": true,
+      "logout_button": true, "close_button": true, "closes_on_x": true
+    },
+    "dashboard_bottom_padding_note": "main has overflow-hidden and inner container uses pb-32 (128px), which is > bottom-nav height, so bottom nav does not cover content"
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "CocoBottomNav is unconditionally rendered from TopNav. TopNav is imported on many app pages, so this is fine, but pages that do not include <TopNav /> would not get the bottom nav. Consider mounting CocoBottomNav in the app layout to guarantee it appears on every authenticated route.",
+    "main element in dashboard-content.tsx uses 'overflow-hidden' on a min-h-dvh container. This currently masks any horizontal overflow (scrollWidth == clientWidth) and can hide real overflow bugs during future edits — consider 'overflow-x-clip' only, or removing it, so overflow regressions surface in tests."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "test_credentials": "qa.coco.tester@example.com / CocoTest#2026 (free tier)",
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All 8 review items pass. Mobile bottom nav is delivered via <CocoBottomNav /> mounted at the end of TopNav (header itself is 'hidden md:block'). Testids to reuse: bottom-nav, bottom-nav-dashboard, bottom-nav-live, bottom-nav-analyzer, bottom-nav-future, bottom-nav-more, bottom-nav-more-close, bottom-nav-logout, bottom-nav-analyzer-otc-chart-analyzer, bottom-nav-analyzer-real-chart-analyzer, bottom-nav-more-{otc-chart-analyzer|real-chart-analyzer|news-signals|management|home}, dashboard-profile, dashboard-name, dashboard-plan, dashboard-tools."
+}

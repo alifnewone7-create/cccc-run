@@ -23,6 +23,7 @@ import {
   Check,
 } from 'lucide-react'
 import { useAuth } from '@/components/auth-provider'
+import { CocoBottomNav } from '@/components/coco/coco-bottom-nav'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -148,7 +149,8 @@ export function TopNav() {
   }
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+    <>
+    <header className="sticky top-0 z-50 hidden px-3 pt-3 sm:px-4 sm:pt-4 md:block">
       <div className="border-luxe surface-luxe mx-auto max-w-6xl rounded-2xl shadow-[0_10px_40px_-12px_oklch(0.5_0.2_285_/_0.45)] backdrop-blur-xl">
         <nav className="flex items-center justify-between gap-4 px-3 py-2.5 sm:px-5 sm:py-3">
           {/* Mobile: hamburger (left) */}
@@ -172,14 +174,14 @@ export function TopNav() {
             className="flex items-center gap-2.5 md:gap-3"
           >
             <Image
-              src="/sweetex-logo.jpg"
-              alt="Sweetex AI"
+              src="/coco-ai.jpg"
+              alt="Coco AI"
               width={36}
               height={36}
               className="hidden rounded-xl ring-1 ring-primary/30 md:block"
             />
             <span className="text-lg font-bold tracking-tight md:text-xl">
-                    Sweetex <span className="text-shine">AI</span>
+                    Coco <span className="text-shine">AI</span>
             </span>
           </Link>
 
@@ -224,7 +226,7 @@ export function TopNav() {
             >
               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl ring-1 ring-primary/40 transition-transform hover:scale-105 md:hover:scale-100">
                 <Image
-                  src="/sweetex-profile.png"
+                  src="/coco-ai.jpg"
                   alt={`${firstName} profile`}
                   width={40}
                   height={40}
@@ -263,7 +265,7 @@ export function TopNav() {
                   <div className="profile-card__header flex items-start justify-between gap-4 border-b border-border/70 px-5 py-4 sm:px-6">
                     <div className="min-w-0">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-                        Sweetex account
+                        Coco AI account
                       </p>
                       <h2 className="mt-1 text-lg font-bold tracking-tight">
                         Profile details
@@ -283,7 +285,7 @@ export function TopNav() {
                     <section className="profile-card__identity flex items-center gap-4 rounded-2xl p-4 sm:p-5">
                       <span className="profile-card__avatar relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl sm:h-24 sm:w-24">
                         <Image
-                          src="/sweetex-profile.png"
+                          src="/coco-ai.jpg"
                           alt={`${firstName} profile`}
                           width={96}
                           height={96}
@@ -384,14 +386,14 @@ export function TopNav() {
               <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <Image
-                    src="/sweetex-logo.jpg"
-                    alt="Sweetex AI"
+                    src="/coco-ai.jpg"
+                    alt="Coco AI"
                     width={38}
                     height={38}
                     className="rounded-xl ring-1 ring-primary/30"
                   />
                   <span className="text-lg font-bold tracking-tight">
-              Sweetex <span className="text-shine">AI</span>
+              Coco <span className="text-shine">AI</span>
                   </span>
                 </div>
                 <button
@@ -491,7 +493,7 @@ export function TopNav() {
                   id="logout-confirm-title"
                   className="mt-4 text-lg font-bold tracking-tight sm:text-xl"
                 >
-                  Log out of Sweetex AI?
+                  Log out of Coco AI?
                 </h2>
                 <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
                   You&apos;ll need to sign in again to access your dashboard and
@@ -523,5 +525,7 @@ export function TopNav() {
           document.body,
         )}
     </header>
+    <CocoBottomNav />
+    </>
   )
 }

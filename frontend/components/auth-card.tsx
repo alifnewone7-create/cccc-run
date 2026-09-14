@@ -241,29 +241,46 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="coco grid min-h-dvh grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]" data-testid="auth-layout">
       {/* Dark brand panel */}
-      <aside className="coco-shade relative hidden flex-col items-center justify-between p-10 text-center xl:p-14 lg:flex">
+      <aside className="coco-auth-panel relative hidden flex-col justify-between overflow-hidden p-10 xl:p-14 lg:flex">
+        <span className="coco-auth-panel-glow" aria-hidden="true" />
+        <span className="coco-auth-panel-edge" aria-hidden="true" />
+
         <Link href="/" className="relative z-10 flex items-center gap-3">
-          <Image src="/coco-ai.jpg" alt="Coco AI" width={40} height={40} className="rounded-xl" />
+          <Image
+            src="/coco-ai.jpg"
+            alt="Coco AI"
+            width={40}
+            height={40}
+            className="rounded-xl ring-1 ring-white/20"
+          />
           <span className="coco-sub text-lg text-white">
             Coco <span className="coco-accent">AI</span>
           </span>
         </Link>
 
-        <div className="relative z-10 flex max-w-md flex-col items-center">
+        <div className="relative z-10 max-w-[440px]">
           <span className="coco-eyebrow">
             <Radar className="coco-orbit h-3 w-3" />
             Trading intelligence
           </span>
-          <h2 className="coco-display coco-title-gradient mt-6 text-[2.4rem] xl:text-[2.9rem]">
+          <h2 className="coco-display coco-title-gradient mt-6 text-balance text-[2.1rem] leading-[1.08] xl:text-[2.5rem]">
             The market never sleeps. Neither does Coco AI.
           </h2>
-          <ul className="mt-9 flex flex-col items-center gap-4">
+          <p className="mt-4 max-w-[38ch] text-pretty text-sm leading-relaxed text-white/55">
+            One console for OTC and real pairs, with a verdict, a confidence score and a timeframe
+            on every call.
+          </p>
+
+          <ul className="mt-9 flex flex-col gap-2.5">
             {BRAND_POINTS.map((p) => (
-              <li key={p.text} className="flex flex-col items-center gap-2">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-[#c4a6ff]">
+              <li
+                key={p.text}
+                className="flex items-center gap-3.5 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3.5"
+              >
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.07] text-[#c4a6ff]">
                   <p.icon className="h-4 w-4" />
                 </span>
-                <span className="text-sm leading-relaxed text-white/65">{p.text}</span>
+                <span className="text-[13px] leading-snug text-white/70">{p.text}</span>
               </li>
             ))}
           </ul>

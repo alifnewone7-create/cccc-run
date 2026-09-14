@@ -221,6 +221,58 @@
   }
 }
 
+/* ── Auth brand panel ───────────────────────────────────────────────── */
+.coco-auth-panel {
+  isolation: isolate;
+  color: #fff;
+  background:
+    radial-gradient(90% 60% at 12% 8%, rgba(150, 96, 255, 0.34), transparent 66%),
+    linear-gradient(168deg, #2b1a6d 0%, #221355 32%, #170d3a 62%, #0d0724 100%);
+}
+.coco-auth-panel .coco-title-gradient {
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 46%,
+    rgba(255, 255, 255, 0.66) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.coco-auth-panel .coco-eyebrow {
+  border-color: rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+}
+.coco-auth-panel-glow {
+  position: absolute;
+  bottom: -22%;
+  left: -14%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(208, 44, 151, 0.26), transparent);
+  filter: blur(60px);
+  z-index: 0;
+}
+.coco-auth-panel-edge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(196, 166, 255, 0.35) 30%,
+    rgba(196, 166, 255, 0.35) 70%,
+    transparent
+  );
+  z-index: 1;
+}
+
 .coco-light {
   background:    radial-gradient(60rem 26rem at 50% 0%, rgba(228, 214, 255, 0.55), transparent 62%),
     linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f7f8 100%);

@@ -36,7 +36,7 @@ const LICENSE_PERKS = [
 
 export function CocoPricing() {
   return (
-    <section id="pricing" className="coco-light scroll-mt-24">
+    <section id="pricing" className="coco-light coco-curve-top scroll-mt-24">
       <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <span className="coco-eyebrow">
           <Layers className="h-3 w-3" />

@@ -62,6 +62,25 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
+/* Curved top edge, lifts a light block over the dark hero */
+.coco-curve-top {
+  position: relative;
+  z-index: 1;
+  margin-top: -34px;
+  border-top-left-radius: 62% 34px;
+  border-top-right-radius: 62% 34px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .coco-curve-top {
+    margin-top: -68px;
+    border-top-left-radius: 58% 68px;
+    border-top-right-radius: 58% 68px;
+  }
+}
+
+
 .coco-light {
   background:    radial-gradient(60rem 26rem at 50% 0%, rgba(228, 214, 255, 0.55), transparent 62%),
     linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f7f8 100%);

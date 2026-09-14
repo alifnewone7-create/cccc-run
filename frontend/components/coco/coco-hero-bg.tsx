@@ -64,7 +64,6 @@ export function CocoHeroBg() {
       <span className="coco-hero-glow coco-hero-glow-a" />
       <span className="coco-hero-glow coco-hero-glow-b" />
       <span className="coco-hero-glow coco-hero-glow-c" />
-      <span className="coco-hero-grid" />
 
       <svg className="coco-hero-neural" viewBox="0 0 590 380" preserveAspectRatio="xMidYMid slice">
         <defs>

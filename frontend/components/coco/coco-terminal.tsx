@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { SatelliteDish, ArrowRight, ArrowUpRight, ArrowDownRight, Eye } from 'lucide-react'
+import { SatelliteDish, ArrowRight, ArrowUpRight, ArrowDownRight, EyeOff } from 'lucide-react'
 
 type Signal = {
   id: number
@@ -24,12 +24,11 @@ const POOL: Omit<Signal, 'id' | 't'>[] = [
   { pair: 'USD/JPY', dir: 'CALL', conf: 89, tf: '5M' },
 ]
 
-function stamp(offset: number) {
-  const d = new Date(Date.now() - offset * 1000)
-  return d.toTimeString().slice(0, 8)
+function hhmm(d: Date) {
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
 }
 
-const INITIAL: Signal[] = POOL.slice(0, 5).map((s, i) => ({ ...s, id: i, t: '--:--:--' }))
+const INITIAL: Signal[] = POOL.slice(0, 5).map((s, i) => ({ ...s, id: i, t: '--:--' }))
 
 const METRICS = [
   { k: 'median latency', v: '180ms' },
@@ -41,16 +40,38 @@ export function CocoTerminal() {
   const [rows, setRows] = useState<Signal[]>(INITIAL)
 
   useEffect(() => {
-    setRows((prev) => prev.map((r, i) => ({ ...r, t: stamp((5 - i) * 47) })))
+    const base = new Date()
+    base.setSeconds(0, 0)
+    // Top row is the upcoming minute, released ~35s before the candle opens.
+    setRows((prev) =>
+      prev.map((r, i) => ({ ...r, t: hhmm(new Date(base.getTime() + (1 - i) * 60000)) })),
+    )
+
     let n = 5
-    const id = setInterval(() => {
+    let interval: ReturnType<typeof setInterval>
+    const push = () => {
+      const target = new Date()
+      target.setSeconds(0, 0)
+      target.setMinutes(target.getMinutes() + 2)
       setRows((prev) => {
         const next = POOL[n % POOL.length]
         n += 1
-        return [{ ...next, id: n, t: stamp(0) }, ...prev].slice(0, 5)
+        return [{ ...next, id: n, t: hhmm(target) }, ...prev].slice(0, 5)
       })
-    }, 2600)
-    return () => clearInterval(id)
+    }
+
+    const now = new Date()
+    const secs = now.getSeconds()
+    const delay = ((secs < 35 ? 35 - secs : 95 - secs) * 1000) - now.getMilliseconds()
+    const timeout = setTimeout(() => {
+      push()
+      interval = setInterval(push, 60000)
+    }, delay)
+
+    return () => {
+      clearTimeout(timeout)
+      clearInterval(interval)
+    }
   }, [])
 
   return (
@@ -122,9 +143,7 @@ export function CocoTerminal() {
                 >
                   <span
                     aria-hidden="true"
-                    className={`coco-badge select-none blur-[3.5px] ${
-                      r.dir === 'CALL' ? 'coco-badge-call' : 'coco-badge-put'
-                    }`}
+                    className="coco-badge coco-badge-locked select-none blur-[4px]"
                   >
                     {r.dir === 'CALL' ? (
                       <ArrowUpRight className="h-3 w-3" />
@@ -134,17 +153,17 @@ export function CocoTerminal() {
                     {r.dir}
                   </span>
                   <span className="absolute inset-0 flex items-center justify-center text-white/90">
-                    <Eye className="h-3.5 w-3.5" />
+                    <EyeOff className="h-3.5 w-3.5" />
                   </span>
                 </a>
               </div>
             ))}
             <a
               href="#pricing"
-              className="coco-mono mt-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.05] px-4 py-2.5 text-[10px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+              className="coco-btn coco-btn-primary mt-1 w-full justify-center"
               data-testid="terminal-unlock-cta"
             >
-              <Eye className="h-3.5 w-3.5" />
+              <EyeOff className="h-4 w-4" />
               Unlock live direction
             </a>
           </div>

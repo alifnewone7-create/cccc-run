@@ -7,7 +7,7 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 
 const NAV_LINKS = [
   { label: 'Engine', href: '#about' },
-  { label: 'Modules', href: '#modules' },
+  { label: 'Compare', href: '#compare' },
   { label: 'How it works', href: '#how' },
   { label: 'Access', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },

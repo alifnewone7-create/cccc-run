@@ -190,6 +190,15 @@
   color: var(--ink);
 }
 
+@media (max-width: 639px) {
+  .coco-eyebrow {
+    padding: 4px 9px;
+    font-size: 8.5px;
+    gap: 6px;
+    letter-spacing: 0.07em;
+  }
+}
+
 .coco-dark .coco-eyebrow,
 .coco-shade .coco-eyebrow {
   border-color: rgba(255, 255, 255, 0.14);

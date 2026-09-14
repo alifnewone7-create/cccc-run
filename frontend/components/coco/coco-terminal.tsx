@@ -55,20 +55,20 @@ export function CocoTerminal() {
 
   return (
     <section id="terminal" className="coco-dark scroll-mt-24">
-      <div className="mx-auto grid max-w-[1140px] gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:px-8 lg:py-24">
-        <div>
+      <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="flex flex-col items-center">
           <span className="coco-eyebrow">
             <Activity className="h-3 w-3" />
             Live feed preview
           </span>
-          <h2 className="coco-display coco-title-gradient mt-5 text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+          <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[24ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
             Signals land in your console the second confluence forms.
           </h2>
-          <p className="mt-5 max-w-[50ch] text-pretty text-sm leading-relaxed text-white/62 sm:text-base">
+          <p className="mx-auto mt-4 max-w-[54ch] text-pretty text-sm leading-relaxed text-white/62 sm:text-base">
             Four proprietary models vote on every candle. Only when they agree does a verdict ship,
             complete with direction, confidence and timeframe.
           </p>
-          <div className="mt-9 grid grid-cols-3 gap-4">
+          <div className="mt-9 grid w-full max-w-[620px] grid-cols-3 gap-3 sm:gap-4">
             {METRICS.map((m) => (
               <div key={m.k} className="coco-metric">
                 <p className="coco-display text-[1.6rem] leading-none text-white sm:text-[2rem]">{m.v}</p>
@@ -82,7 +82,7 @@ export function CocoTerminal() {
           </Link>
         </div>
 
-        <div className="coco-window" data-testid="signal-terminal">
+        <div className="coco-window mx-auto mt-12 max-w-[720px] text-left" data-testid="signal-terminal">
           <div className="coco-window-bar">
             <span className="coco-dot bg-[#ff5f57]" />
             <span className="coco-dot bg-[#febc2e]" />

@@ -27,31 +27,29 @@ const QUOTES = [
 export function CocoTestimonials() {
   return (
     <section id="traders" className="coco-light scroll-mt-24">
-      <div className="mx-auto max-w-[1140px] px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
+      <div className="mx-auto max-w-[1140px] px-4 pb-16 text-center sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
         <div className="coco-rule" />
-        <div className="mt-12 flex flex-col gap-6 sm:mt-14 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-[560px]">
-            <span className="coco-eyebrow">
-              <MessageSquareQuote className="h-3 w-3" />
-              Trader notes
-            </span>
-            <h2 className="coco-display coco-title-gradient mt-5 text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
-              Trusted on desks in 30+ countries.
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
+        <div className="mt-12 flex flex-col items-center gap-5 sm:mt-14">
+          <span className="coco-eyebrow">
+            <MessageSquareQuote className="h-3 w-3" />
+            Trader notes
+          </span>
+          <h2 className="coco-display coco-title-gradient mx-auto max-w-[24ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
+            Trusted on desks in 30+ countries.
+          </h2>
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
             <span className="flex text-[#f5b301]">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-current" />
               ))}
             </span>
-            <span className="coco-mono text-[11px] uppercase tracking-[0.1em] text-[var(--dim)]">
+            <span className="coco-mono text-[10px] uppercase tracking-[0.1em] text-[var(--dim)] sm:text-[11px]">
               4.9 / 5 average operator rating
             </span>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 text-left md:grid-cols-3">
           {QUOTES.map((q, i) => (
             <figure
               key={q.name}

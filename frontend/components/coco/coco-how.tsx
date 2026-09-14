@@ -24,35 +24,33 @@ const STEPS = [
 export function CocoHow() {
   return (
     <section id="how" className="coco-light scroll-mt-24">
-      <div className="mx-auto max-w-[1140px] px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <span className="coco-eyebrow">
-              <Route className="h-3 w-3" />
-              How it works
-            </span>
-            <h2 className="coco-display coco-title-gradient mt-5 text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
-              From login to live signal in three moves.
-            </h2>
-          </div>
-          <p className="coco-muted max-w-[52ch] text-pretty text-sm sm:text-base lg:justify-self-end">
-            No indicators to configure, no scripts to maintain. The workflow is deliberately short so
-            you spend time on decisions, not setup.
-          </p>
-        </div>
+      <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <span className="coco-eyebrow">
+          <Route className="h-3 w-3" />
+          How it works
+        </span>
+        <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[24ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
+          From login to live signal in three moves.
+        </h2>
+        <p className="coco-muted mx-auto mt-4 max-w-[54ch] text-pretty text-sm sm:text-base">
+          No indicators to configure, no scripts to maintain. The workflow is deliberately short so
+          you spend time on decisions, not setup.
+        </p>
 
-        <ol className="mt-14 grid gap-10 sm:grid-cols-3 sm:gap-6">
+        <ol className="mt-12 grid gap-10 sm:grid-cols-3 sm:gap-6">
           {STEPS.map((s, i) => (
             <li key={s.n} className="relative" data-testid={`how-step-${i + 1}`}>
               {i < STEPS.length - 1 && <span className="coco-step-line hidden sm:block" aria-hidden="true" />}
-              <div className="flex items-start gap-4 sm:flex-col sm:gap-5">
+              <div className="flex flex-col items-center gap-4 text-center">
                 <span className="coco-step-num shrink-0">{s.n}</span>
-                <div>
+                <div className="flex flex-col items-center">
                   <span className="coco-icon h-10 w-10">
                     <s.icon className="h-[18px] w-[18px]" />
                   </span>
-                  <h3 className="coco-sub mt-4 text-[19px]">{s.title}</h3>
-                  <p className="coco-muted mt-2 max-w-[34ch] text-sm leading-relaxed">{s.desc}</p>
+                  <h3 className="coco-sub mt-4 text-[17px] sm:text-[19px]">{s.title}</h3>
+                  <p className="coco-muted mx-auto mt-2 max-w-[34ch] text-sm leading-relaxed">
+                    {s.desc}
+                  </p>
                 </div>
               </div>
             </li>

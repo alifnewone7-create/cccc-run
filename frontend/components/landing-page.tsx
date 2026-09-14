@@ -1,7 +1,7 @@
 import { CocoNavbar } from '@/components/coco/coco-navbar'
 import { CocoHero } from '@/components/coco/coco-hero'
 import { CocoFeatures } from '@/components/coco/coco-features'
-import { CocoModules } from '@/components/coco/coco-modules'
+import { CocoComparison } from '@/components/coco/coco-comparison'
 import { CocoHow } from '@/components/coco/coco-how'
 import { CocoTerminal } from '@/components/coco/coco-terminal'
 import { CocoPricing } from '@/components/coco/coco-pricing'
@@ -17,11 +17,11 @@ export function LandingPage() {
         <CocoHero />
       </div>
       <main>
-        <CocoFeatures />
-        <CocoModules />
+        <CocoPricing />
+        <CocoComparison />
         <CocoHow />
         <CocoTerminal />
-        <CocoPricing />
+        <CocoFeatures />
         <CocoTestimonials />
         <CocoFaq />
       </main>

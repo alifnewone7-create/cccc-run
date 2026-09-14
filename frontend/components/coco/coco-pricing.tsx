@@ -42,60 +42,64 @@ export function CocoPricing() {
           <Layers className="h-3 w-3" />
           Access paths
         </span>
-        <h2 className="coco-display coco-title-gradient mt-5 text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+        <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[22ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
           Two ways in. Same engine.
         </h2>
-        <p className="coco-muted mx-auto mt-4 max-w-[58ch] text-pretty text-sm sm:text-base">
+        <p className="coco-muted mx-auto mt-4 max-w-[54ch] text-pretty text-sm sm:text-base">
           Earn free access through our partner broker, or take a direct license and skip the setup
           completely.
         </p>
 
-        <div className="mx-auto mt-12 grid max-w-[980px] gap-5 lg:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-[980px] items-stretch gap-4 lg:grid-cols-2">
           {/* Partner access */}
           <div
-            className="coco-card flex flex-col items-center p-7 text-center sm:p-9"
+            className="coco-card flex flex-col p-6 text-center sm:p-8"
             data-testid="pricing-free"
           >
-            <span className="coco-mono rounded-full border border-[#b9f3dd] bg-[#e6fff7] px-3 py-1 text-[10px] uppercase text-[#0f7a5a]">
+            <span className="coco-mono mx-auto rounded-full border border-[#b9f3dd] bg-[#e6fff7] px-3 py-1 text-[10px] uppercase text-[#0f7a5a]">
               $0 partner
             </span>
-            <h3 className="coco-sub mt-4 text-2xl">Partner access</h3>
+            <h3 className="coco-sub mt-4 text-xl sm:text-2xl">Partner access</h3>
             <p className="coco-muted mt-2 text-sm">Three steps and the engine unlocks at no cost.</p>
 
-            <ol className="mt-7 flex w-full flex-col">
+            <ol className="mt-6 flex flex-1 flex-col gap-3">
               {FREE_STEPS.map((step, i) => (
                 <li
                   key={step.title}
-                  className="flex flex-col items-center border-t border-[var(--hairline)] py-5 first:border-t-0 first:pt-0"
+                  className="flex items-start gap-3.5 rounded-2xl border border-[var(--hairline)] bg-white/70 p-4 text-left"
                 >
-                  <span className="coco-icon">
-                    <step.icon className="h-5 w-5" />
+                  <span className="coco-icon h-10 w-10 shrink-0">
+                    <step.icon className="h-[18px] w-[18px]" />
                   </span>
-                  <p className="coco-mono mt-3 text-[10px] uppercase tracking-[0.12em] text-[var(--dim)]">
-                    Step {i + 1}
-                  </p>
-                  <p className="coco-sub mt-1 text-[17px]">{step.title}</p>
-                  <p className="coco-muted mt-1 max-w-[34ch] text-sm leading-relaxed">{step.desc}</p>
+                  <div className="min-w-0">
+                    <p className="coco-mono text-[10px] uppercase tracking-[0.12em] text-[var(--dim)]">
+                      Step {i + 1}
+                    </p>
+                    <p className="coco-sub mt-0.5 text-[16px] sm:text-[17px]">{step.title}</p>
+                    <p className="coco-muted mt-1 text-[13px] leading-relaxed sm:text-sm">
+                      {step.desc}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ol>
 
-            <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <a
                 href="https://market-qx.pro/sign-up/?lid=619650"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="coco-btn coco-btn-ghost w-full sm:w-auto"
+                className="coco-btn coco-btn-ghost w-full"
                 data-testid="pricing-broker-cta"
               >
                 <UserRoundPlus className="h-4 w-4" />
-                Create broker account
+                Create account
               </a>
               <a
                 href="https://t.me/Ayan_sx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="coco-btn w-full border border-[#dccdff] bg-[#ece4ff] text-[var(--iris)] hover:bg-[#e0d3ff] sm:w-auto"
+                className="coco-btn w-full border border-[#dccdff] bg-[#ece4ff] text-[var(--iris)] hover:bg-[#e0d3ff]"
                 data-testid="pricing-support-cta"
               >
                 <Headset className="h-4 w-4" />
@@ -106,26 +110,31 @@ export function CocoPricing() {
 
           {/* License */}
           <div
-            className="coco-shade relative flex flex-col items-center justify-center overflow-hidden rounded-[24px] p-7 text-center sm:p-9"
+            className="coco-shade relative flex flex-col overflow-hidden rounded-[24px] p-6 text-center sm:p-8"
             data-testid="pricing-license"
           >
-            <span className="coco-mono rounded-full border border-white/18 bg-white/[0.08] px-3 py-1 text-[10px] uppercase text-white/75">
+            <span className="coco-mono mx-auto rounded-full border border-white/18 bg-white/[0.08] px-3 py-1 text-[10px] uppercase text-white/75">
               instant access
             </span>
-            <h3 className="coco-sub mt-4 text-2xl text-white">Direct license</h3>
-            <p className="mt-2 max-w-[38ch] text-sm text-white/60">
+            <h3 className="coco-sub mt-4 text-xl text-white sm:text-2xl">Direct license</h3>
+            <p className="mx-auto mt-2 max-w-[38ch] text-sm text-white/60">
               No broker, no waiting. One month of unrestricted engine access.
             </p>
 
-            <div className="mt-7 flex items-end justify-center gap-2">
-              <span className="coco-display text-[3.4rem] leading-none text-white">$99</span>
+            <div className="mt-6 flex items-end justify-center gap-2">
+              <span className="coco-display text-[2.6rem] leading-none text-white sm:text-[3.4rem]">
+                $99
+              </span>
               <span className="coco-mono mb-1 text-[11px] uppercase text-white/50">/ month</span>
             </div>
 
-            <ul className="mt-7 flex flex-col items-center gap-3">
+            <ul className="mx-auto mt-6 flex flex-1 flex-col gap-3 text-left">
               {LICENSE_PERKS.map((perk) => (
-                <li key={perk} className="flex items-center gap-3 text-sm text-white/80">
-                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/12 text-[#c4a6ff]">
+                <li
+                  key={perk}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-[13px] text-white/80 sm:text-sm"
+                >
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/12 text-[#c4a6ff]">
                     <Check className="h-3 w-3" />
                   </span>
                   {perk}
@@ -137,7 +146,7 @@ export function CocoPricing() {
               href="https://t.me/Ayan_sx"
               target="_blank"
               rel="noopener noreferrer"
-              className="coco-btn coco-btn-primary mt-8 w-full sm:w-auto"
+              className="coco-btn coco-btn-primary mt-6 w-full"
               data-testid="pricing-license-cta"
             >
               <KeyRound className="h-4 w-4" />

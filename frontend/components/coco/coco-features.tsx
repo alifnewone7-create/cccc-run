@@ -55,7 +55,7 @@ export function CocoFeatures() {
           <Cpu className="h-3 w-3" />
           Engine capabilities
         </span>
-        <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[22ch] text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
+        <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[22ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
           A full trading desk, compressed into one engine.
         </h2>
         <p className="coco-muted mx-auto mt-4 max-w-[58ch] text-pretty text-sm sm:text-base">

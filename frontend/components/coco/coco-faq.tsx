@@ -30,33 +30,32 @@ const FAQS = [
 export function CocoFaq() {
   return (
     <section id="faq" className="coco-light scroll-mt-24">
-      <div className="mx-auto max-w-[1140px] px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
+      <div className="mx-auto max-w-[1140px] px-4 pb-16 text-center sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
         <div className="coco-rule" />
-        <div className="mt-12 grid gap-10 sm:mt-14 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="coco-eyebrow">
-              <CircleHelp className="h-3 w-3" />
-              FAQ
-            </span>
-            <h2 className="coco-display coco-title-gradient mt-5 text-balance text-[2rem] sm:text-[2.6rem] lg:text-[3rem]">
-              Questions traders ask before they launch.
-            </h2>
-            <p className="coco-muted mt-4 max-w-[40ch] text-sm sm:text-base">
-              Still unsure? The support desk answers within minutes on Telegram.
-            </p>
-            <a
-              href="https://t.me/Ayan_sx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="coco-btn coco-btn-ghost mt-7"
-              data-testid="faq-support-cta"
-            >
-              <Send className="h-4 w-4" />
-              Message support
-            </a>
-          </div>
+        <div className="mt-12 flex flex-col items-center sm:mt-14">
+          <span className="coco-eyebrow">
+            <CircleHelp className="h-3 w-3" />
+            FAQ
+          </span>
+          <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[24ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
+            Questions traders ask before they launch.
+          </h2>
+          <p className="coco-muted mx-auto mt-4 max-w-[48ch] text-sm sm:text-base">
+            Still unsure? The support desk answers within minutes on Telegram.
+          </p>
+          <a
+            href="https://t.me/Ayan_sx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="coco-btn coco-btn-ghost mt-7"
+            data-testid="faq-support-cta"
+          >
+            <Send className="h-4 w-4" />
+            Message support
+          </a>
+        </div>
 
-          <div className="flex flex-col gap-3" data-testid="faq-list">
+        <div className="mx-auto mt-12 flex max-w-[860px] flex-col gap-3 text-left" data-testid="faq-list">
             {FAQS.map((f, i) => (
               <details key={f.q} className="coco-faq" data-testid={`faq-item-${i + 1}`} open={i === 0}>
                 <summary>
@@ -69,7 +68,6 @@ export function CocoFaq() {
               </details>
             ))}
           </div>
-        </div>
       </div>
     </section>
   )

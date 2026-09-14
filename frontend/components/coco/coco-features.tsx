@@ -41,12 +41,6 @@ const FEATURES = [
   },
 ]
 
-const STAT_BAND = [
-  { k: 'signal accuracy', v: '96.4%' },
-  { k: 'pairs monitored', v: '42' },
-  { k: 'engine uptime', v: '24 / 7' },
-]
-
 export function CocoFeatures() {
   return (
     <section id="features" className="coco-light scroll-mt-24">
@@ -76,20 +70,6 @@ export function CocoFeatures() {
               <h3 className="coco-sub mt-5 text-[19px]">{f.title}</h3>
               <p className="coco-muted mt-2 text-sm leading-relaxed">{f.desc}</p>
             </article>
-          ))}
-        </div>
-
-        <div
-          className="coco-pastel mt-6 grid gap-8 rounded-[32px] p-8 text-center sm:grid-cols-3 sm:p-10"
-          data-testid="stat-band"
-        >
-          {STAT_BAND.map((s) => (
-            <div key={s.k}>
-              <p className="coco-mono text-[10px] uppercase text-[var(--dim)]">{s.k}</p>
-              <p className="coco-display mt-2 bg-[linear-gradient(140deg,#4b21c9,#9b6bff)] bg-clip-text text-[2.4rem] text-transparent">
-                {s.v}
-              </p>
-            </div>
           ))}
         </div>
       </div>

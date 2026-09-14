@@ -16,37 +16,7 @@ export function CocoHero() {
           The market never sleeps. Neither does{' '}
           <span className="coco-hero-word">
             <span className="coco-hero-word-text">Coco AI</span>
-            <svg
-              className="coco-hero-wave"
-              viewBox="0 0 200 16"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="cocoWaveGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#ff7ac8" />
-                  <stop offset="45%" stopColor="#9b6bff" />
-                  <stop offset="100%" stopColor="#3ecfff" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M3 10 C 15 2, 27 2, 39 10 S 63 18, 75 10 S 99 2, 111 10 S 135 18, 147 10 S 171 2, 183 10 S 195 14, 197 11"
-                fill="none"
-                stroke="url(#cocoWaveGrad)"
-                strokeWidth="3.4"
-                strokeLinecap="round"
-                opacity="0.55"
-              />
-              <path
-                className="coco-hero-wave-shimmer"
-                d="M3 10 C 15 2, 27 2, 39 10 S 63 18, 75 10 S 99 2, 111 10 S 135 18, 147 10 S 171 2, 183 10 S 195 14, 197 11"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="3.4"
-                strokeLinecap="round"
-                strokeDasharray="34 220"
-              />
-            </svg>
+            <span className="coco-hero-word-glow" aria-hidden="true" />
           </span>
           .
         </h1>

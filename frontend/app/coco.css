@@ -1,0 +1,989 @@
+/* ── Coco AI design system (home + auth) ─────────────────────────────── */
+
+.coco {
+  --iris: #6d3bff;
+  --iris-soft: #8b5cff;
+  --cyan: #b48cff;
+  --void: #0a0618;
+  --cosmic: #0b0618;
+  --ink: #141414;
+  --dim: #656565;
+  --hairline: #e5e7eb;
+  --frost: #ece4ff;
+  --mist: #f6f7f9;
+
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.coco *,
+.coco *::before,
+.coco *::after {
+  border-color: var(--hairline);
+}
+
+/* Zones */
+.coco-dark {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 70% at 50% -14%, rgba(190, 150, 255, 0.14), transparent 56%),
+    radial-gradient(90% 60% at 50% 0%, rgba(96, 52, 190, 0.34), transparent 60%),
+    radial-gradient(70% 55% at 85% 22%, rgba(60, 40, 170, 0.28), transparent 64%),
+    linear-gradient(
+      180deg,
+      #1b0f45 0%,
+      #251461 16%,
+      #2a1772 30%,
+      #22125a 46%,
+      #170c3c 62%,
+      #0f0826 80%,
+      var(--cosmic) 100%
+    );
+  color: #fff;
+}
+
+.coco-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 110%, rgba(8, 4, 20, 0.85), transparent 62%);
+}
+
+.coco-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.coco-light {
+  background:    radial-gradient(60rem 26rem at 50% 0%, rgba(228, 214, 255, 0.55), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f7f8 100%);
+  color: var(--ink);
+}
+
+/* Calmer dark grading for blocks (cards, footer) */
+.coco-shade {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(100% 70% at 50% -10%, rgba(130, 84, 255, 0.42), transparent 62%),
+    radial-gradient(70% 60% at 92% 4%, rgba(170, 100, 255, 0.26), transparent 68%),
+    linear-gradient(180deg, #2a1668 0%, #1f114f 34%, #120a2c 70%, #090518 100%);
+  color: #fff;
+}
+
+.coco-dark .coco-title-gradient,
+.coco-shade .coco-title-gradient {
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 42%,
+    rgba(255, 255, 255, 0.64) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient headline chrome (dark + light zones) */
+.coco-title-gradient {
+  background-image: linear-gradient(
+    176deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.92) 42%,
+    rgba(255, 255, 255, 0.64) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.coco-light .coco-title-gradient {
+  background-image: linear-gradient(176deg, #141414 0%, #24242c 48%, #55555f 100%);
+}
+
+.coco-accent-gradient {
+  background-image: linear-gradient(100deg, #d6b8ff 0%, #9b6bff 48%, #6d3bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pastel gradient surface, ToDesktop CTA grading */
+.coco-pastel {
+  background-image: linear-gradient(
+    114.58deg,
+    #e6d9ff -1.34%,
+    rgba(255, 222, 253, 0.56) 24.05%,
+    rgba(247, 247, 247, 1) 74.82%
+  );
+  outline: 1px solid rgba(55, 55, 55, 0.04);
+  outline-offset: -1px;
+}
+
+/* Ghost surface for light-zone blocks */
+.coco-ghost {
+  background: rgba(55, 55, 55, 0.045);
+  border: 1px solid rgba(55, 55, 55, 0.06);
+}
+
+/* Gradient hairline rules */
+.coco-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22) 22%,
+    rgba(255, 255, 255, 0.22) 78%,
+    transparent
+  );
+}
+.coco-light .coco-rule {
+  background: linear-gradient(90deg, transparent, var(--hairline) 20%, var(--hairline) 80%, transparent);
+}
+
+.coco-ink {
+  color: var(--ink);
+}
+.coco-muted {
+  color: var(--dim);
+}
+.coco-accent {
+  color: var(--cyan);
+}
+
+/* Display type */
+.coco-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  line-height: 1.05;
+}
+
+.coco-sub {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Mono eyebrow tag */
+.coco-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  border: 1px solid var(--hairline);
+  background-image: linear-gradient(180deg, rgba(55, 55, 55, 0.05), rgba(55, 55, 55, 0.02));
+  color: var(--ink);
+}
+
+.coco-dark .coco-eyebrow,
+.coco-shade .coco-eyebrow {
+  border-color: rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    rgba(255, 255, 255, 0.14) 0 1px 0 0 inset,
+    rgba(2, 9, 44, 0.35) 0 4px 16px 0;
+}
+
+.coco-mono {
+  font-family: var(--font-tech), ui-monospace, monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Buttons */
+.coco-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.25s ease,
+    color 0.2s ease;
+}
+
+.coco-btn svg {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.coco-btn-primary {
+  background-image: linear-gradient(180deg, #9b6bff 0%, #6d3bff 52%, #5526e0 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    rgba(255, 255, 255, 0.22) 0 1px 2px -0.5px inset,
+    rgba(255, 255, 255, 0.28) 0 0.5px 0.5px 0 inset,
+    rgba(255, 255, 255, 0.18) 0 8px 24px -4px inset,
+    rgba(109, 59, 255, 0.45) 0 12px 28px -12px;
+}
+.coco-btn-primary:hover {
+  background-image: linear-gradient(180deg, #ab82ff 0%, #7d4dff 52%, #6d3bff 100%);
+  transform: translateY(-1px);
+}
+.coco-btn-primary:hover svg:last-child {
+  transform: translateX(3px);
+}
+.coco-btn-primary:active {
+  transform: translateY(0);
+}
+
+.coco-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+.coco-btn-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.coco-dark .coco-btn-ghost,
+.coco-shade .coco-btn-ghost {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.coco-dark .coco-btn-ghost:hover,
+.coco-shade .coco-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Pill nav */
+.coco-nav {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(16, 9, 36, 0.55)),
+    linear-gradient(180deg, rgba(16, 9, 36, 0.7), rgba(16, 9, 36, 0.7));
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    rgba(255, 255, 255, 0.1) 0 1px 3px 0 inset,
+    rgba(10, 4, 40, 0.45) 0 16px 56px 0;
+}
+
+.coco-navlink {
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.66);
+  transition: color 0.2s ease;
+}
+.coco-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -6px;
+  height: 1.5px;
+  background: var(--cyan);
+  transition: right 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.coco-navlink:hover {
+  color: #fff;
+}
+.coco-navlink:hover::after {
+  right: 0;
+}
+
+/* Cards */
+.coco-card {
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  background-image: linear-gradient(180deg, #ffffff 0%, #fafbfd 100%);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-image 0.3s ease;
+}
+.coco-card:hover {
+  transform: translateY(-4px);
+  border-color: #d8c9ff;
+  background-image: linear-gradient(180deg, #ffffff 0%, #f8f4ff 100%);
+  box-shadow:
+    rgba(109, 59, 255, 0.12) 0 14px 28px -12px,
+    rgba(0, 0, 0, 0.04) 0 0 0 1px;
+}
+
+.coco-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
+  border-radius: 12px;
+  background-image: linear-gradient(160deg, #efe8ff 0%, #e3d9ff 55%, #f6e9ff 100%);
+  border: 1px solid #dccdff;
+  color: var(--iris);
+  box-shadow: rgba(255, 255, 255, 0.9) 0 1px 0 0 inset;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+}
+.coco-card:hover .coco-icon {
+  transform: translateY(-2px) rotate(-4deg);
+  filter: saturate(1.25);
+}
+
+.coco-dark .coco-card {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px);
+}
+
+/* Terminal window mockup */
+.coco-window {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    rgba(255, 255, 255, 0.06) 0 1px 3px 0 inset,
+    rgba(2, 9, 44, 0.5) 0 24px 64px 0;
+}
+.coco-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.coco-window-body {
+  background-image: linear-gradient(180deg, #120a2c 0%, var(--void) 60%, #06040f 100%);
+  padding: 18px 16px;
+}
+.coco-dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 999px;
+}
+
+/* Inputs */
+.coco-input {
+  height: 46px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  padding: 0 40px 0 40px;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.coco-input::placeholder {
+  color: #9a9aa3;
+}
+.coco-input:focus {
+  border-color: var(--iris);
+  box-shadow: 0 0 0 3px rgba(109, 59, 255, 0.14);
+}
+
+.coco-tab {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dim);
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+.coco-tab:hover {
+  color: var(--ink);
+}
+.coco-tab[data-active='true'] {
+  background-image: linear-gradient(180deg, #9b6bff 0%, #6d3bff 52%, #5526e0 100%);
+  color: #fff;
+  box-shadow: rgba(255, 255, 255, 0.22) 0 1px 0 0 inset;
+}
+
+
+/* Motion */
+.coco-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: coco-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes coco-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.coco-ticker {
+  animation: coco-ticker 1.6s steps(2) infinite;
+}
+@keyframes coco-ticker {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.coco-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(180, 140, 255, 0.16) 50%,
+    transparent 60%
+  );
+  background-size: 260% 100%;
+  animation: coco-sweep 6s ease-in-out infinite;
+}
+@keyframes coco-sweep {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+.coco-bar {
+  transform-origin: bottom;
+  animation: coco-bar 1.5s ease-in-out infinite;
+}
+@keyframes coco-bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.coco-pulse {
+  animation: coco-pulse 2.4s ease-in-out infinite;
+}
+@keyframes coco-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.coco-orbit {
+  animation: coco-orbit 18s linear infinite;
+}
+@keyframes coco-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coco-rise,
+  .coco-sweep,
+  .coco-bar,
+  .coco-pulse,
+  .coco-orbit,
+  .coco-ticker {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Engine system map (app-tile constellation) ─────────────────────── */
+
+.coco-tile {
+  position: absolute;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 26%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    rgba(255, 255, 255, 0.22) 0 1px 0 0 inset,
+    rgba(0, 0, 0, 0.55) 0 22px 44px -18px,
+    rgba(0, 0, 0, 0.35) 0 0 0 1px;
+  opacity: 0;
+  animation: coco-pop 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  cursor: default;
+}
+.coco-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 58%);
+  pointer-events: none;
+}
+.coco-tile::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: radial-gradient(closest-side, rgba(200, 170, 255, 0.16), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.coco-tile:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    rgba(255, 255, 255, 0.28) 0 1px 0 0 inset,
+    rgba(0, 0, 0, 0.6) 0 30px 50px -18px;
+}
+.coco-tile:hover::after {
+  opacity: 1;
+}
+.coco-tile-icon {
+  width: 46%;
+  height: 46%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+}
+
+@keyframes coco-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.coco-core {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    rgba(255, 255, 255, 0.08) 0 0 0 10px,
+    rgba(170, 120, 255, 0.6) 0 0 90px -8px,
+    rgba(0, 0, 0, 0.7) 0 30px 60px -24px;
+  animation: coco-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.coco-core-img {
+  position: absolute;
+  inset: 12%;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.18) 0 0 0 1px inset;
+}
+.coco-core-halo {
+  position: absolute;
+  inset: -22%;
+  border-radius: 999px;
+  border: 1px dashed rgba(255, 255, 255, 0.28);
+  animation: coco-orbit 24s linear infinite;
+}
+
+.coco-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* Wires */
+.coco-dash {
+  animation: coco-dash 2.6s linear infinite;
+}
+@keyframes coco-dash {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ── Market tape ────────────────────────────────────────────────────── */
+.coco-tape {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 5, 20, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.coco-tape-track {
+  display: flex;
+  width: max-content;
+  animation: coco-marquee 48s linear infinite;
+}
+.coco-tape:hover .coco-tape-track {
+  animation-play-state: paused;
+}
+@keyframes coco-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.coco-tape-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.78);
+}
+.coco-up {
+  color: #4ade80;
+}
+.coco-down {
+  color: #fb7185;
+}
+
+/* ── Dark glass card (modules / terminal) ───────────────────────────── */
+.coco-glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    rgba(18, 10, 44, 0.5);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    rgba(255, 255, 255, 0.08) 0 1px 0 0 inset,
+    rgba(2, 6, 30, 0.5) 0 24px 60px -30px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.coco-glass:hover {
+  transform: translateY(-4px);
+  border-color: rgba(190, 160, 255, 0.4);
+  box-shadow:
+    rgba(255, 255, 255, 0.1) 0 1px 0 0 inset,
+    rgba(140, 90, 255, 0.28) 0 30px 70px -30px;
+}
+.coco-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  pointer-events: none;
+}
+
+.coco-mod-icon {
+  display: inline-grid;
+  place-items: center;
+  height: 46px;
+  width: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    rgba(255, 255, 255, 0.2) 0 1px 0 0 inset,
+    rgba(0, 0, 0, 0.5) 0 14px 30px -14px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.coco-glass:hover .coco-mod-icon {
+  transform: translateY(-2px) rotate(-5deg);
+}
+
+.coco-chip-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.coco-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c4a6ff;
+  transition: color 0.2s ease;
+}
+.coco-link-arrow svg {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.coco-link-arrow:hover {
+  color: #fff;
+}
+.coco-link-arrow:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Verdict mock inside OTC card */
+.coco-verdict-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.coco-verdict-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  transform-origin: left;
+  animation: coco-fill 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes coco-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ── Steps ──────────────────────────────────────────────────────────── */
+.coco-step-num {
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  background-image: linear-gradient(180deg, #6d3bff 0%, rgba(109, 59, 255, 0.15) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.coco-step-line {
+  position: absolute;
+  top: 26px;
+  left: calc(50% + 40px);
+  right: calc(-50% + 40px);
+  height: 1px;
+  background: repeating-linear-gradient(90deg, #d8c9ff 0 6px, transparent 6px 12px);
+}
+
+/* ── Signal terminal ────────────────────────────────────────────────── */
+.coco-sig-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.8);
+  animation: coco-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.coco-sig-row[data-fresh='true'] {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(74, 222, 128, 0.06);
+}
+.coco-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.coco-badge-call {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+.coco-badge-put {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+}
+.coco-conf {
+  position: relative;
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.coco-conf > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #c4a6ff, #7d4dff);
+}
+
+.coco-metric {
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  padding-left: 16px;
+}
+
+/* ── Testimonials ───────────────────────────────────────────────────── */
+.coco-quote {
+  position: relative;
+}
+.coco-quote::before {
+  content: '“';
+  position: absolute;
+  top: -18px;
+  left: -4px;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(109, 59, 255, 0.14);
+}
+.coco-avatar {
+  display: inline-grid;
+  place-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 12px;
+  font-family: var(--font-tech), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ── FAQ ────────────────────────────────────────────────────────────── */
+.coco-faq {
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: #fff;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.coco-faq[open] {
+  border-color: #d8c9ff;
+  box-shadow: rgba(109, 59, 255, 0.1) 0 14px 30px -18px;
+}
+.coco-faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+}
+.coco-faq summary::-webkit-details-marker {
+  display: none;
+}
+.coco-faq-chev {
+  display: inline-grid;
+  place-items: center;
+  height: 28px;
+  width: 28px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  color: var(--dim);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease, color 0.2s ease;
+}
+.coco-faq[open] .coco-faq-chev {
+  transform: rotate(45deg);
+  background: var(--iris);
+  border-color: var(--iris);
+  color: #fff;
+}
+.coco-faq-body {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--dim);
+  animation: coco-rise 0.35s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coco-tile,
+  .coco-core,
+  .coco-core-halo,
+  .coco-dash,
+  .coco-dash-seq,
+  .coco-tape-track,
+  .coco-sig-row,
+  .coco-verdict-bar > i {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .coco-sig-row {
+    grid-template-columns: 46px 1fr auto auto;
+    gap: 8px;
+    padding: 10px 8px;
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+  .coco-conf {
+    display: none;
+  }
+}
+
+.coco-dash-seq {
+  animation-name: coco-dash-seq;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes coco-dash-seq {
+  from {
+    stroke-dashoffset: 716;
+  }
+  to {
+    stroke-dashoffset: 16;
+  }
+}
+.coco-tile-icon {
+  width: 50%;
+  height: 50%;
+}

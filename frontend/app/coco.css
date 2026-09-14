@@ -273,6 +273,58 @@
   z-index: 1;
 }
 
+.coco-auth-point {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
+  box-shadow:
+    rgba(255, 255, 255, 0.08) 0 1px 0 0 inset,
+    rgba(6, 3, 20, 0.4) 0 10px 26px -14px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    background 0.35s ease;
+  animation: coco-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.coco-auth-point::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14%;
+  bottom: 14%;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #c4a6ff, #6d3bff);
+  opacity: 0.85;
+}
+.coco-auth-point:hover {
+  transform: translateX(4px);
+  border-color: rgba(196, 166, 255, 0.28);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
+}
+.coco-auth-point-icon {
+  display: inline-flex;
+  height: 38px;
+  width: 38px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #e9deff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(138, 76, 240, 0.55), rgba(74, 31, 158, 0.55));
+  box-shadow: rgba(255, 255, 255, 0.18) 0 1px 0 0 inset;
+}
+
 .coco-light {
   background:    radial-gradient(60rem 26rem at 50% 0%, rgba(228, 214, 255, 0.55), transparent 62%),
     linear-gradient(180deg, #ffffff 0%, #fbfcfe 48%, #f7f7f8 100%);

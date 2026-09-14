@@ -12,9 +12,10 @@ import {
   EyeOff,
   LoaderCircle,
   ArrowRight,
-  Radar,
-  ShieldHalf,
-  Zap,
+  BrainCircuit,
+  Waypoints,
+  Gauge,
+  BadgeCheck,
   CircleAlert,
 } from 'lucide-react'
 import { useAuth } from '@/components/auth-provider'
@@ -107,11 +108,7 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
       </div>
 
       <div className="mt-7 text-center">
-        <span className="coco-eyebrow">
-          <Radar className="h-3 w-3" />
-          {isLogin ? 'Engine access' : 'New operator'}
-        </span>
-        <h1 className="coco-display coco-title-gradient mt-4 text-[1.9rem] sm:text-[2.1rem]" data-testid="auth-heading">
+        <h1 className="coco-display coco-title-gradient text-[1.9rem] sm:text-[2.1rem]" data-testid="auth-heading">
           {isLogin ? 'Welcome back.' : 'Create your account.'}
         </h1>
         <p className="coco-muted mt-2 text-sm leading-relaxed">
@@ -232,9 +229,21 @@ export function AuthCard({ mode }: { mode: AuthMode }) {
 }
 
 const BRAND_POINTS = [
-  { icon: Radar, text: 'Autonomous scanning across OTC and real pairs' },
-  { icon: Zap, text: 'Verdicts delivered the second confluence lands' },
-  { icon: ShieldHalf, text: 'Confidence scoring on every single entry' },
+  {
+    icon: Waypoints,
+    label: 'Full market sweep',
+    text: 'Autonomous scanning across OTC and real pairs',
+  },
+  {
+    icon: Gauge,
+    label: 'Zero lag delivery',
+    text: 'Verdicts delivered the second confluence lands',
+  },
+  {
+    icon: BadgeCheck,
+    label: 'Scored conviction',
+    text: 'Confidence scoring on every single entry',
+  },
 ]
 
 export function AuthLayout({ children }: { children: React.ReactNode }) {
@@ -260,7 +269,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
 
         <div className="relative z-10 max-w-[440px]">
           <span className="coco-eyebrow">
-            <Radar className="coco-orbit h-3 w-3" />
+            <BrainCircuit className="h-3 w-3" />
             Trading intelligence
           </span>
           <h2 className="coco-display coco-title-gradient mt-6 text-balance text-[2.1rem] leading-[1.08] xl:text-[2.5rem]">
@@ -271,16 +280,24 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
             on every call.
           </p>
 
-          <ul className="mt-9 flex flex-col gap-2.5">
-            {BRAND_POINTS.map((p) => (
+          <ul className="mt-10 flex flex-col gap-3">
+            {BRAND_POINTS.map((p, i) => (
               <li
                 key={p.text}
-                className="flex items-center gap-3.5 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3.5"
+                className="coco-auth-point"
+                style={{ '--d': `${120 + i * 90}ms` } as React.CSSProperties}
               >
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.07] text-[#c4a6ff]">
-                  <p.icon className="h-4 w-4" />
+                <span className="coco-auth-point-icon">
+                  <p.icon className="h-[18px] w-[18px]" />
                 </span>
-                <span className="text-[13px] leading-snug text-white/70">{p.text}</span>
+                <span className="min-w-0">
+                  <span className="coco-mono block text-[9.5px] uppercase tracking-[0.16em] text-[#c4a6ff]/75">
+                    {p.label}
+                  </span>
+                  <span className="mt-1 block text-[13.5px] font-medium leading-snug text-white/82">
+                    {p.text}
+                  </span>
+                </span>
               </li>
             ))}
           </ul>

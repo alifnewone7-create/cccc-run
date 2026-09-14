@@ -2,23 +2,23 @@ import { Star, MessageSquareQuote } from 'lucide-react'
 
 const QUOTES = [
   {
-    name: 'Rafael M.',
-    role: 'OTC trader · Brazil',
-    initials: 'RM',
+    name: 'Tanvir Hasan',
+    role: 'Coco AI member · Dhaka, Bangladesh',
+    initials: 'TH',
     bg: 'linear-gradient(145deg,#8a4cf0,#4a1f9e)',
     text: 'The OTC analyzer reads reversals I used to miss completely. My weekend sessions went from coin-flips to structured entries.',
   },
   {
-    name: 'Ayesha K.',
-    role: 'Part-time trader · UAE',
-    initials: 'AK',
+    name: 'Nusrat Jahan',
+    role: 'Coco AI member · Chattogram, Bangladesh',
+    initials: 'NJ',
     bg: 'linear-gradient(145deg,#5b4df0,#241c7a)',
     text: 'I only trade two hours a night. Live Signals hands me the setups so I can act instead of scanning charts.',
   },
   {
-    name: 'Daniel O.',
-    role: 'Forex desk · Nigeria',
-    initials: 'DO',
+    name: 'Arjun Mehta',
+    role: 'Coco AI member · Mumbai, India',
+    initials: 'AM',
     bg: 'linear-gradient(145deg,#d02c97,#5c1148)',
     text: 'Confidence scores are the difference. When Coco says 90+, I size up. When it stays quiet, I stay flat.',
   },

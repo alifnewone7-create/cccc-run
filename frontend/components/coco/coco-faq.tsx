@@ -1,4 +1,5 @@
-import { Plus, CircleHelp, Send } from 'lucide-react'
+import { Plus, CircleHelp } from 'lucide-react'
+import { GlyphTelegram } from '@/components/coco/coco-glyphs'
 
 const FAQS = [
   {
@@ -50,7 +51,7 @@ export function CocoFaq() {
             className="coco-btn coco-btn-ghost mt-7"
             data-testid="faq-support-cta"
           >
-            <Send className="h-4 w-4" />
+            <GlyphTelegram className="h-4 w-4" />
             Message support
           </a>
         </div>

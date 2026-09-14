@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, TriangleAlert, Send, ScrollText } from 'lucide-react'
+import { ArrowRight, TriangleAlert, ScrollText } from 'lucide-react'
+import { GlyphTelegram } from '@/components/coco/coco-glyphs'
 
 export function CocoFooter() {
   return (
@@ -51,22 +52,34 @@ export function CocoFooter() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
             >
-              <Send className="h-4 w-4" />
+              <GlyphTelegram className="h-4 w-4" />
               Support desk
             </a>
           </nav>
         </div>
 
-        <div className="mx-auto flex max-w-[900px] flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-          <TriangleAlert className="h-5 w-5 shrink-0 text-[#ffb020]" />
-          <p className="text-xs leading-relaxed text-white/55">
-            <span className="font-semibold text-white/85">Trading risk notice:</span> Trading
-            financial instruments carries a high level of risk and may not suit every investor.
-            Leverage can work against you as much as for you. Past performance of Coco AI is not
-            indicative of future results. Never trade capital you cannot afford to lose. Coco AI
-            provides tools and signals for informational purposes only and does not constitute
-            financial advice.
-          </p>
+        <div
+          className="mx-auto max-w-[900px] rounded-[22px] p-[1px]"
+          style={{ background: 'linear-gradient(140deg,rgba(255,176,32,0.45),rgba(255,255,255,0.06) 55%,rgba(196,166,255,0.35))' }}
+          data-testid="risk-notice"
+        >
+          <div className="flex flex-col items-center gap-4 rounded-[21px] bg-[rgba(12,7,30,0.55)] p-5 text-center backdrop-blur-md sm:flex-row sm:items-start sm:gap-5 sm:p-7 sm:text-left">
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#ffb020]/30 bg-[#ffb020]/12 text-[#ffb020]">
+              <TriangleAlert className="h-[18px] w-[18px]" />
+            </span>
+            <div>
+              <p className="coco-mono text-[10px] uppercase tracking-[0.14em] text-[#ffb020]">
+                Trading risk notice
+              </p>
+              <p className="mt-2 text-[12.5px] leading-relaxed text-white/60 sm:text-[13px]">
+                Trading financial instruments carries a high level of risk and may not suit every
+                investor. Leverage can work against you as much as for you. Past performance of Coco
+                AI is not indicative of future results. Never trade capital you cannot afford to
+                lose. Coco AI provides tools and signals for informational purposes only and does not
+                constitute financial advice.
+              </p>
+            </div>
+          </div>
         </div>
 
         <p className="coco-mono mt-8 text-[11px] uppercase text-white/35">

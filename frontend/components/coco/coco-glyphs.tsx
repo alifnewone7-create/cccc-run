@@ -3,6 +3,14 @@ type GlyphProps = { className?: string }
 const base = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round', strokeLinejoin: 'round' } as const
 
 /* OTC Analyzer: reversal loop inside a scanning aperture */
+export function GlyphTelegram({ className }: GlyphProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21.94 3.4a1.2 1.2 0 0 0-1.27-.2L2.9 10.47c-.9.36-.86 1.66.06 1.96l4.2 1.37 1.6 5.03c.23.72 1.14.93 1.66.38l2.3-2.42 4.3 3.16c.6.44 1.45.12 1.62-.6l3.68-14.7a1.2 1.2 0 0 0-.38-1.25ZM9.6 13.9l8.1-5.03-6.3 6.6c-.15.16-.24.37-.25.6l-.1 2.1-1.05-3.3a.9.9 0 0 0-.4-.97Z" />
+    </svg>
+  )
+}
+
 export function GlyphOtc({ className }: GlyphProps) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">

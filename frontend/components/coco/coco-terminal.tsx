@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Activity, ArrowRight, ArrowUpRight, ArrowDownRight } from 'lucide-react'
+import { SatelliteDish, ArrowRight, ArrowUpRight, ArrowDownRight, Eye } from 'lucide-react'
 
 type Signal = {
   id: number
@@ -58,7 +58,7 @@ export function CocoTerminal() {
       <div className="mx-auto max-w-[1140px] px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="flex flex-col items-center">
           <span className="coco-eyebrow">
-            <Activity className="h-3 w-3" />
+            <SatelliteDish className="h-3 w-3" />
             Live feed preview
           </span>
           <h2 className="coco-display coco-title-gradient mx-auto mt-5 max-w-[24ch] text-balance text-[1.7rem] sm:text-[2.6rem] lg:text-[3rem]">
@@ -96,16 +96,16 @@ export function CocoTerminal() {
             </span>
           </div>
           <div className="coco-window-body flex flex-col gap-2">
-            <div className="coco-mono grid grid-cols-[52px_1fr_auto_auto] gap-3 px-3 pb-1 text-[10px] uppercase tracking-[0.1em] text-white/35">
+            <div className="coco-mono coco-sig-head px-3 pb-1 text-[9px] uppercase tracking-[0.1em] text-white/35 sm:text-[10px]">
               <span>time</span>
               <span>pair</span>
-              <span>conf</span>
-              <span>verdict</span>
+              <span className="coco-conf-head">conf</span>
+              <span>direction</span>
             </div>
             {rows.map((r, i) => (
               <div key={r.id} className="coco-sig-row" data-fresh={i === 0} data-testid="signal-row">
                 <span className="text-white/45">{r.t}</span>
-                <span className="font-medium text-white">
+                <span className="truncate font-medium text-white">
                   {r.pair} <span className="text-white/35">· {r.tf}</span>
                 </span>
                 <span className="flex items-center gap-2">
@@ -114,12 +114,39 @@ export function CocoTerminal() {
                   </span>
                   <span className="w-8 text-right text-white/70">{r.conf}%</span>
                 </span>
-                <span className={`coco-badge ${r.dir === 'CALL' ? 'coco-badge-call' : 'coco-badge-put'}`}>
-                  {r.dir === 'CALL' ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}
-                  {r.dir}
-                </span>
+                <a
+                  href="#pricing"
+                  aria-label="Unlock signal direction"
+                  className="relative inline-flex items-center justify-center transition-transform hover:scale-105"
+                  data-testid="signal-direction-lock"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`coco-badge select-none blur-[3.5px] ${
+                      r.dir === 'CALL' ? 'coco-badge-call' : 'coco-badge-put'
+                    }`}
+                  >
+                    {r.dir === 'CALL' ? (
+                      <ArrowUpRight className="h-3 w-3" />
+                    ) : (
+                      <ArrowDownRight className="h-3 w-3" />
+                    )}
+                    {r.dir}
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center text-white/90">
+                    <Eye className="h-3.5 w-3.5" />
+                  </span>
+                </a>
               </div>
             ))}
+            <a
+              href="#pricing"
+              className="coco-mono mt-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.05] px-4 py-2.5 text-[10px] uppercase tracking-[0.1em] text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+              data-testid="terminal-unlock-cta"
+            >
+              <Eye className="h-3.5 w-3.5" />
+              Unlock live direction
+            </a>
           </div>
         </div>
       </div>
